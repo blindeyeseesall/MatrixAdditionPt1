@@ -1,5 +1,5 @@
 /*
-Name:
+Name: 
 Date: 11/30/2025
 Assignment: Matrix Addition Pt.1 
 Purpose: Get input from file.  Parse into arrays.  Setup multi-threaded program.
@@ -38,7 +38,7 @@ public class Main
             System.out.println("Qutting... Provide an input filename on the command line.");
 			System.exit(0);
 		 }
-		 
+		//Variable for storing matrices and matrices metadata
 		int matrixRow = 0;
 		int matrixCol = 0;
 		int[][] matrixA = null;
@@ -50,47 +50,52 @@ public class Main
 			//Open the file 
             File file = new File(filename);
 			Scanner input = new Scanner(file);
+			//Get the row and columns sizes for the matrix
 			matrixRow = input.nextInt();
 			matrixCol = input.nextInt();
+			//Create new int arrays with the row and column sizes
 			matrixA = new int[matrixRow][matrixCol];
 			matrixB = new int[matrixRow][matrixCol];
-			
+			//Fill the matrices with data from the file
+			//Matrix A
 			for (int i = 0; i<matrixRow; i++) {
 				for (int j = 0; j<matrixCol; j++) {
 					matrixA[i][j] = input.nextInt();
 				}
 			}
+			//Matrix B
 			for (int i = 0; i<matrixRow; i++) {
 				for (int j = 0; j<matrixCol; j++) {
 					matrixB[i][j] = input.nextInt();
 				}
 			}
-			
 		} catch (FileNotFoundException e) {
 		  System.out.println("An error occurred.");
 		  e.printStackTrace();
 		}//End Try-Catch Input block
 		
+		//Print the matrices
 		System.out.println("Printing matrix A: ");
 		printMatrix(matrixA);
 		System.out.println("Printing matrix B: ");
 		printMatrix(matrixB);
 		
+		//Create new threads
 		ThreadOperation t1 = new ThreadOperation(matrixA,matrixB,1);
 		ThreadOperation t2 = new ThreadOperation(matrixA,matrixB,2);
 		ThreadOperation t3 = new ThreadOperation(matrixA,matrixB,3);
 		ThreadOperation t4 = new ThreadOperation(matrixA,matrixB,4);
 		
+		//Start the threads
 		t1.start();
 		t2.start();
 		t3.start();
 		t4.start();
-		
-		
-		
-	}
+	}//End void main
 	
+	//Method to print out a XxY matrix.
 	public static void printMatrix(int[][] matrix) {
+		//Use nested loop to print out the 2d array
 		for (int i = 0; i < matrix.length; i++) { 
             for (int j = 0; j < matrix[i].length; j++) { 
                 System.out.print(matrix[i][j] + " "); 
