@@ -1,9 +1,10 @@
 /*
-This code is provided to give you a
-starting place. It should be modified.
-No further imports are needed.
-To earn full credit, you must also
-answer the following question:
+Name:
+Date: 11/30/2025
+Assignment: Matrix Addition Pt.1 
+Purpose: Get input from file.  Parse into arrays.  Setup multi-threaded program.
+FileNames: "Main.java, ThreadOperation.java"
+
 
 Q1: One of the goals of multi-threading
 is to minimize the resource usage, such
@@ -15,6 +16,8 @@ machines, how sluggish humans are,
 threads compared to processes, etcetera,
 and connect these issues to 
 multi-threading.
+
+A1: Threads share the same memory space so memory between threads can be shared. This is in contrast to the overhead of spawning new processes which require their own memory space.  Additionally, if a thread is blocked by waiting for I/O, or user input, another thread in the same application that is ready for processing can use the CPU, maximizing CPU.
 
 */
 import java.io.IOException;
@@ -68,14 +71,21 @@ public class Main
 		  e.printStackTrace();
 		}//End Try-Catch Input block
 		
+		System.out.println("Printing matrix A: ");
 		printMatrix(matrixA);
+		System.out.println("Printing matrix B: ");
 		printMatrix(matrixB);
 		
-		ThreadOperation t1 = new ThreadOperation();
-		ThreadOperation t2 = new ThreadOperation();
+		ThreadOperation t1 = new ThreadOperation(matrixA,matrixB,1);
+		ThreadOperation t2 = new ThreadOperation(matrixA,matrixB,2);
+		ThreadOperation t3 = new ThreadOperation(matrixA,matrixB,3);
+		ThreadOperation t4 = new ThreadOperation(matrixA,matrixB,4);
 		
 		t1.start();
 		t2.start();
+		t3.start();
+		t4.start();
+		
 		
 		
 	}
@@ -87,6 +97,8 @@ public class Main
             }
             System.out.println();
 		}//Endfor
+		System.out.println();
+		
 	}//End method printMatrix
 
 }
