@@ -63,14 +63,19 @@ public class Main
 				}
 			}
 			
-			//printMatrix(matrixA);
-			//printMatrix(matrixB);
-			
-			
 		} catch (FileNotFoundException e) {
 		  System.out.println("An error occurred.");
 		  e.printStackTrace();
 		}//End Try-Catch Input block
+		
+		printMatrix(matrixA);
+		printMatrix(matrixB);
+		
+		ThreadOperation t1 = new ThreadOperation();
+		ThreadOperation t2 = new ThreadOperation();
+		
+		t1.start();
+		t2.start();
 		
 		
 	}
